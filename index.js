@@ -1,6 +1,6 @@
 "use strict";
 // Add a function name to <ul> in the main page---------------------------
-addFunctionName('addFunctionName(name, description)', 'adds the name of the function and its description to the page')
+addFunctionName('addFunctionName(name, description)', 'adds the name of the function and its description to this page')
 function addFunctionName(name, description) {
     let ul = document.getElementById('functions');
     let li = document.createElement('li');
@@ -21,7 +21,7 @@ function shuffle(array) {
 
 
 // Upgraidable calculator------------------------------------------------
-addFunctionName('calculate("a + b")', 'upgraidable calculator, init by "new Calculator", add new methods by ".addMethod"');
+addFunctionName('calculate("a + b")', 'upgraidable calculator, init by "new Calculator()", add new methods by ".addMethod"');
 function Calculator(str) {
     this.methods = {
         '+': (a, b) => a + b,
