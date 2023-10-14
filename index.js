@@ -1,6 +1,7 @@
 "use strict";
 // Add a function name to <ul> in the main page---------------------------
 addFunctionName('addFunctionName(name, description)', 'adds the name of the function and its description to this page')
+
 function addFunctionName(name, description) {
     let ul = document.getElementById('functions');
     let li = document.createElement('li');
@@ -9,8 +10,10 @@ function addFunctionName(name, description) {
 }
 
 
+
 // Shuffle an array in random order ----------------------------------------
 addFunctionName('shuffle(array)', "shuffles array's items in random order");
+
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
@@ -22,6 +25,7 @@ function shuffle(array) {
 
 // Upgraidable calculator------------------------------------------------
 addFunctionName('calculate("a + b")', 'upgraidable calculator, init by "new Calculator()", add new methods by ".addMethod"');
+
 function Calculator(str) {
     this.methods = {
         '+': (a, b) => a + b,
@@ -66,12 +70,14 @@ function Calculator(str) {
 // console.log(a.calculate('1 + 2'));
 
 
+
 // find max subarray sum --------------------------------------------------------------------
 // Return 0 if the result is less then 0.
 // let arr = [-1, 2, 3, -9]; //5
 // [-1, 2, 3, -9, 11] // 11
 // [100, -9, 2, -3, 5] // 100
 addFunctionName('getMaxSubSum(array)', 'find max subarray sum')
+
 function getMaxSubSum(arr) {
     let result = 0;
 
@@ -124,6 +130,7 @@ function getMaxSubSum(arr) {
 
 // Game of Timmeouts   (3,4,2,1)-----------------------------------------------------
 addFunctionName('timeoutGame()', 'Micro and Macro tasks with web API play the game')
+
 function timeoutGame() {
     setTimeout(function timeout() {
         console.log("timeout 1");
@@ -143,7 +150,10 @@ function timeoutGame() {
 // console.log(a);
 
 
+
 // lowerCamelCase out of my-short-string -----------------------------------
+addFunctionName('camelize(str)', 'lowerCamelCase out of my-short-string')
+
 function camelize(str) {
     return str
         .split('-')
@@ -155,7 +165,10 @@ function camelize(str) {
 }
 
 
+
 // Filter an array with altering the original array-----------------------------------------
+addFunctionName('filterRangeInPlace(arr, a, b)', 'Filter an array')
+
 function filterRangeInPlace(arr, a, b) {
     for (let i = 0; i < arr.length; i++) {
         if (arr[i] < a || arr[i] > b) {
@@ -168,3 +181,21 @@ function filterRangeInPlace(arr, a, b) {
 
 
 
+// make an obj out of arr of users, user.id becomes a key for obj
+addFunctionName('groupById(array)', 'make an obj out of arr of users')
+
+function groupById(array) {
+    return array.reduce((obj, value) => {
+        obj[value.id] = value;
+        return obj;
+    }, {})
+}
+
+// Solution 2
+// function groupById(arr) {
+//     let res = {}
+//     for (e of arr) {
+//         res[e.id] = e
+//     }
+//     return res
+// }
