@@ -199,3 +199,34 @@ function groupById(array) {
 //     }
 //     return res
 // }
+
+
+
+// Iter pseudoarray
+addFunctionName('pseudo-array', 'pseudo-array object with iterator')
+let pseudoArrayIterator = {
+    0: "Zero",
+    1: "One",
+    2: function SomeMethod() { },
+
+    length: 3,
+
+    [Symbol.iterator]() {
+        this.i = 0;
+        return this;
+    },
+
+    next() {
+        if (this.i < this.length) {
+            return { done: false, value: this[this.i++] }
+        }
+        return { done: true };
+    },
+};
+
+pseudoArrayIterator["3"] = "Three";
+pseudoArrayIterator.length++;
+
+//   for (let value of pseudoArrayIterator) {
+//     console.log(value); // "Zero", "One", f someMethod() {} "Three";
+//   }
