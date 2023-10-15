@@ -11,6 +11,25 @@ function addFunctionName(name, description) {
 
 
 
+// intersection example on page
+addFunctionName('intersection', 'intersection example on DOM elements');
+// enable an observer
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        let inOut = ''
+        if (entry.isIntersecting) {
+            inOut = 'on viewport'
+        } else {
+            inOut = 'out viewport'
+        }
+        console.log(inOut, entry.target);
+    });
+});
+// set an observer for each li element on page
+const li = document.querySelectorAll('li');
+li.forEach(e => observer.observe(e));
+
+
 // Shuffle an array in random order ----------------------------------------
 addFunctionName('shuffle(array)', "shuffles array's items in random order");
 
