@@ -18,9 +18,9 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         let inOut = ''
         if (entry.isIntersecting) {
-            inOut = 'on viewport'
+            inOut = 'enters viewport'
         } else {
-            inOut = 'out viewport'
+            inOut = 'exits viewport'
         }
         console.log(inOut, entry.target);
     });
@@ -28,6 +28,27 @@ const observer = new IntersectionObserver((entries) => {
 // set an observer for each li element on page
 const li = document.querySelectorAll('li');
 li.forEach(e => observer.observe(e));
+
+
+
+// filters an array of strings out of anagrams
+addFunctionName('aclean', 'filters an array of strings out of anagrams')
+function aclean(arr) {
+    // create a filter object
+    let filter = {}
+    arr.forEach(elem => {
+        // sort each word of an array
+        // use it as keys in the filter object
+        // and each word itself will be the value
+        // if meet the same key from another word, the value is overwritten
+        let key = elem.toLowerCase().split('').sort().join('')
+        filter[key] = elem
+    })
+    return Object.values(filter)
+}
+// let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+// console.log(aclean(arr))
+
 
 
 // Shuffle an array in random order ----------------------------------------
