@@ -44,6 +44,15 @@ function aclean(arr) {
         let key = elem.toLowerCase().split('').sort().join('')
         filter[key] = elem
     })
+
+    // Solution 2 (with .reduce())
+    // return Object.values(
+    //     arr.reduce((acc, item) => {
+    //         acc[item.toLowerCase().split('').sort().join('')] = item;
+    //         return acc;
+    //     }, {})
+    // )
+
     return Object.values(filter)
 }
 // let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
