@@ -178,7 +178,7 @@ function getMaxSubSum(arr) {
 
 
 // Game of Timmeouts   (3,4,2,1)-----------------------------------------------------
-addFunctionName('timeoutGame()', 'Micro and Macro tasks with web API play the game')
+addFunctionName('timeoutGame()', 'Micro and Macro tasks with web API')
 
 function timeoutGame() {
     setTimeout(function timeout() {
@@ -193,7 +193,23 @@ function timeoutGame() {
 }
 
 
-// Свойство примитива ------------------------------------------------
+addFunctionName('topObjectValue()', "returns property's key with max value")
+function topObjectValue(object) {
+    let maxValue = 0;
+    let resultKey = null;
+
+    for (let [key, value] of Object.entries(object)) {
+        if (value > maxValue) {
+            maxValue = value;
+            resultKey = key;
+        }
+    }
+    return resultKey;
+}
+
+
+
+// Primitive property ------------------------------------------------
 // let a = 10;
 // a.b = 20;
 // console.log(a);
