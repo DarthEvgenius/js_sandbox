@@ -187,7 +187,7 @@ function diffGetTime(date1, date2) {
     return date2.getTime() - date1.getTime();
 }
 
-function bench(diffSubtract, diffGetTime) {
+function bench(diffSubtract = diffSubtract, diffGetTime = diffGetTime) {
     let date1 = new Date(0);
     let date2 = new Date();
 
