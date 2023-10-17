@@ -176,12 +176,28 @@ function getMaxSubSum(arr) {
 
 
 
+// Compare speed of Date object
+addFunctionName('bench(diffSubtract, diffGetTime)', 'compare speed of Date object via subtracking raw dates and date.getTime methods')
+
 function diffSubtract(date1, date2) {
     return date2 - date1;
 }
 
 function diffGetTime(date1, date2) {
     return date2.getTime() - date1.getTime();
+}
+
+function bench(diffSubtract, diffGetTime) {
+    let date1 = new Date(0);
+    let date2 = new Date();
+
+    let start = Date.now();
+    for (let i = 0; i < 100000; i++) diffSubtract(date1, date2);
+    console.log('Subtract: ', Date.now() - start, 'ms');
+
+    start = Date.now();
+    for (let i = 0; i < 100000; i++) diffGetTime(date1, date2);
+    console.log('GetTime: ', Date.now() - start, 'ms');
 }
 
 
