@@ -3,7 +3,18 @@ li {
 }
 
 #div {
-    display: flex;
+    /* display: flex;
+    flex-direction: column; */
+    border: 1px solid #000;
 }
 
-#a {}
+#a {
+    border: 1px solid #4568ae;
+    margin: 10px;
+    display: block;
+}
+
+#img {
+    border: 1px solid #f12b2b;
+    margin: 10px;
+}
