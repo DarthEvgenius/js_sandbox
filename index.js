@@ -172,8 +172,17 @@ function getMaxSubSum(arr) {
 
     return `Max sum is ${result}`;
 }
-
 // console.log(getMaxSubSum(arr));
+
+
+
+function diffSubtract(date1, date2) {
+    return date2 - date1;
+}
+
+function diffGetTime(date1, date2) {
+    return date2.getTime() - date1.getTime();
+}
 
 
 
