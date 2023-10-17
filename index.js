@@ -177,7 +177,7 @@ function getMaxSubSum(arr) {
 
 
 // Compare speed of Date object
-addFunctionName('bench(diffSubtract, diffGetTime)', 'compare speed of Date object via subtracking raw dates and date.getTime methods')
+addFunctionName('bench(diffSubtract, diffGetTime)', 'compare speed of Date object via subtracting raw dates and date.getTime methods')
 
 function diffSubtract(date1, date2) {
     return date2 - date1;
