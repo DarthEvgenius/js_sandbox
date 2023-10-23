@@ -320,3 +320,16 @@ pseudoArrayIterator.length++;
 //   for (let value of pseudoArrayIterator) {
 //     console.log(value); // "Zero", "One", f someMethod() {} "Three";
 //   }
+
+
+
+// adds arguments of each function's call to array
+addFunctionName('spyDecorator', "adds arguments of each function's call to array")
+function spyDecorato(func) {
+    function wrapper(...args) {
+        wrapper.calls.push(args);
+        return func.apply(this, args);
+    }
+    wrapper.calls = [];
+    return wrapper;
+}
