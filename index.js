@@ -324,6 +324,10 @@ pseudoArrayIterator.length++;
 
 
 // adds arguments of each function's call to array
+// Usage:
+// someFunction = spyDecorator(someFunction)
+// someFunction(someArgs)
+// someFunction.calls // [[someArgs], ]
 addFunctionName('spyDecorator', "adds arguments of each function's call to array")
 function spyDecorato(func) {
     function wrapper(...args) {
