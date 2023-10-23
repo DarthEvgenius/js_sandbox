@@ -337,3 +337,15 @@ function spyDecorato(func) {
     wrapper.calls = [];
     return wrapper;
 }
+
+
+
+// Showing this context for objects
+// try thisObject.method()
+let thisObject = {
+    method() {
+        console.log(this); // method
+        let foo = () => console.log(this);
+        foo(); // method
+    }
+}
