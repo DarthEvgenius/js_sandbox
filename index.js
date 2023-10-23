@@ -341,7 +341,6 @@ function spyDecorato(func) {
 
 
 // Showing this context for objects
-// try thisObject.method()
 let thisObject = {
     method() {
         console.log(this); // method
@@ -349,7 +348,10 @@ let thisObject = {
         foo(); // method
     }
 }
-// now we 
+// try thisObject.method()
+
+// now we will return arrow function in obj.method 
+// and then assign this method from one obj to another
 let thisObject_2 = {
     method() {
         console.log(this);
@@ -358,7 +360,9 @@ let thisObject_2 = {
         return foo;
     }
 }
-
 let thisObject_3 = {
-    method_2: obj.method(),
+    method_2: obj.method(), // thisObject_2 !
 }
+// try thisObject_3()
+
+// So the difference between 
