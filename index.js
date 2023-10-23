@@ -343,18 +343,18 @@ function spyDecorato(func) {
 // Showing this context for objects
 let thisObject = {
     method() {
-        console.log(this); // method
+        console.log(this); // thisObject
         let foo = () => console.log(this);
-        foo(); // method
+        foo(); // thisObject
     }
 }
-// try thisObject.method()
+// try thisObject.method() 
 
 // now we will return arrow function in obj.method 
 // and then assign this method from one obj to another
 let thisObject_2 = {
     method() {
-        console.log(this);
+        console.log(this); // thisObject_2
         let foo = () => console.log(this);
 
         return foo;
@@ -365,4 +365,6 @@ let thisObject_3 = {
 }
 // try thisObject_3()
 
-// So the difference between 
+// So the difference between classic function and arrows is in 'this'
+// For classic function 'this' is calculated when we call it
+// For arrow function 'this' is calculated when we create it
