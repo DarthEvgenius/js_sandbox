@@ -349,3 +349,16 @@ let thisObject = {
         foo(); // method
     }
 }
+// now we 
+let thisObject_2 = {
+    method() {
+        console.log(this);
+        let foo = () => console.log(this);
+
+        return foo;
+    }
+}
+
+let thisObject_3 = {
+    method_2: obj.method(),
+}
