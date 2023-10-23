@@ -340,7 +340,8 @@ function spyDecorato(func) {
 
 
 
-// Showing this context for objects
+// Showing this context for object's methods and arrow functions
+addFunctionName('thisObject', "Showing 'this' context for object's methods and arrow functions")
 let thisObject = {
     method() {
         console.log(this); // thisObject
@@ -351,7 +352,7 @@ let thisObject = {
 // try thisObject.method() 
 
 // now we will return arrow function in obj.method 
-// and then assign this method from one obj to another
+// and then assign returned arrow from one obj to another
 let thisObject_2 = {
     method() {
         console.log(this); // thisObject_2
