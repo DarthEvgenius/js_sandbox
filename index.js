@@ -362,7 +362,7 @@ let thisObject_2 = {
     }
 }
 let thisObject_3 = {
-    method_2: obj.method(), // thisObject_2 !
+    method_2: thisObject.method(), // thisObject_2 !
 }
 // try thisObject_3()
 
