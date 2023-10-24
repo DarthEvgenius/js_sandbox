@@ -366,6 +366,7 @@ let thisObject_3 = {
 }
 // try thisObject_3()
 
-// So the difference between classic function and arrows is in 'this'
+// So the difference between classic function and arrows is in 'this':
 // For classic function 'this' is calculated when we call it
-// For arrow function 'this' is calculated when we create it
+// For arrow function 'this' is calculated when we create it and
+// it's taken from outer lexical environment
