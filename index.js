@@ -381,7 +381,7 @@ Usage:
         - Stop timer via .stop()`)
 
 class Clock {
-    constructor({ template }) {
+    constructor(template) {
         this.template = template;
     }
 
