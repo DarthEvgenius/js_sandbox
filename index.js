@@ -419,7 +419,7 @@ class Clock {
 
 addFunctionName('ExtendedClock', `class has prototype of Clock, shows time on each specified interval.
 Usage:
-- Create instanse of ExtendedClock with paramers: {template: 'h:m:s', interval: &lt;ms&gt;}
+- Create instanse of ExtendedClock with paramers: {template: 'h:m:s', interval: &lt;ms&gt;} (( Or you can put just an empty object {}, then default params will be applied ))
     - Activate timer via .start()
         - Stop timer via .stop()`)
 
