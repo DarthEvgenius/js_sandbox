@@ -374,10 +374,10 @@ let thisObject_3 = {
 
 
 
-addFunctionName('Clock', `class clock showing time every sec in console.
-Usage:
-- Create instanse of the class Clock with paramers: {template: 'h:m:s'}
-    - Activate timer via .start()
+addFunctionName('Clock', `class clock showing time every sec in console.<br>
+Usage:<br>
+- Create instanse of the class Clock with paramers: {template: 'h:m:s'}  (Or you can put just an empty object {}, then default params will be applied)<br>
+    - Activate timer via .start()<br>
         - Stop timer via .stop()`)
 
 class Clock {
