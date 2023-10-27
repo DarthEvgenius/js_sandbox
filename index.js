@@ -375,10 +375,10 @@ let thisObject_3 = {
 
 
 addFunctionName('Clock', `class clock showing time every sec in console.\n
-Usage: \n
-- Create new instanse with template('h:m:s') \n
-    - Activate timer via.start() \n
-        - Stop timer via.stop()`)
+Usage:
+- Create new instanse with template('h:m:s')
+    - Activate timer via .start()
+        - Stop timer via .stop()`)
 
 class Clock {
     constructor({ template }) {
