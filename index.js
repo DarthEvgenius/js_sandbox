@@ -424,7 +424,7 @@ Usage:
         - Stop timer via .stop()`)
 
 class ExtendedClock extends Clock {
-    constructor({ template, interval = 1000 }) {
+    constructor({ template = 'h:m:s', interval = 1000 }) {
         super(template);
         this.interval = interval;
     }
