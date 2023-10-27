@@ -417,8 +417,22 @@ class Clock {
 
 
 
-addFunctionName('ExtendedClock', `class shows time each specified interval.
+addFunctionName('ExtendedClock', `class has prototype of Clock, shows time on each specified interval.
 Usage:
-- Create instanse of the class Clock with paramers: {template: 'h:m:s', }
+- Create instanse of the class Clock with paramers: {template: 'h:m:s', interval: <ms>}
     - Activate timer via .start()
         - Stop timer via .stop()`)
+
+class ExtendedClock extends Clock {
+    constructor({ template, interval = 1000 }) {
+        super(template),
+            this.interval = interval,
+    }
+
+    start() {
+        this.render();
+        this.timer = setInterval(
+            () => this.render(), this.interval
+        );
+    }
+}
