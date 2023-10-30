@@ -21,7 +21,7 @@
 
     background-color: #fff;
 
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .wave-btn__text {
@@ -65,6 +65,8 @@
 .wave-btn__waves:after {
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 44%;
+
+    animation: waves 10s infinite linear;
 }
 
 @keyframes waves {
