@@ -60,7 +60,7 @@
 }
 
 .wave-btn__waves:before {
-    background-color: #fff;
+    /* background-color: #fff; */
     border-radius: 48%;
     box-shadow: inset 0 0 10px rgba(170, 218, 237, 0.5);
 
