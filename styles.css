@@ -45,6 +45,9 @@
 
 .wave-btn__waves:before {
     background-color: #d6caca;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
     border-radius: 48%;
 }
 
