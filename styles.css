@@ -51,6 +51,8 @@
     left: 50%;
     width: 250%;
     height: 250%;
+
+    transform: translate3d(-50%, -94%, 0) rotate(0deg);
 }
 
 .wave-btn__waves:before {
@@ -59,7 +61,7 @@
 }
 
 .wave-btn__waves:after {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 44%;
 }
 
