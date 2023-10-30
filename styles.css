@@ -71,7 +71,7 @@
 
 @keyframes waves {
     0% {
-        transform: translate3d(-50%, -94%, 0) rotate(0deg) scale(1);
+        transform: translate3d(-50%, -96%, 0) rotate(0deg) scale(1);
     }
 
     100% {
