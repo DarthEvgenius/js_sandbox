@@ -1,18 +1,21 @@
-/* html,
-body {
-    height: 100%;
-} */
-
 .wave-btn__container {
-    padding: 0;
-    margin: 0;
-    border: 0;
+    padding: 1em;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.wave-btn {
+    width: 280px;
+    height: 60px;
+}
 
+h1 {
+    text-align: center;
+}
 
 li {
     padding: 10px;
