@@ -26,12 +26,15 @@
     position: relative;
     z-index: 1;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 4px;
 }
 
 .wave-btn__waves {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 280px;
     height: 280px;
     background-color: #4973ff;
