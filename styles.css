@@ -58,6 +58,8 @@
 .wave-btn__waves:before {
     background-color: #fff;
     border-radius: 48%;
+
+    animation: waves 5s infinite linear;
 }
 
 .wave-btn__waves:after {
