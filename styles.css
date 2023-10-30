@@ -1,3 +1,4 @@
+/* Wave button styles */
 .wave-btn__container {
     padding: 1em;
     -moz-box-sizing: border-box;
@@ -18,8 +19,6 @@
 
     border: 0;
     border-radius: 10px;
-
-    /* background-color: #d4d2d2; */
 
     overflow: hidden;
 }
