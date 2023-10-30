@@ -43,6 +43,16 @@
     box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
+.wave-btn__waves:after,
+.wave-btn__waves:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 250%;
+    height: 250%;
+}
+
 .wave-btn__waves:before {
     background-color: #d6caca;
     width: 14px;
@@ -51,12 +61,15 @@
     border-radius: 48%;
 }
 
-.wave-btn__waves:after {}
-
-.wave-btn__waves:after,
-.wave-btn__waves:before {
-    content: '';
+.wave-btn__waves:after {
+    background-color: #d85656;
+    width: 14px;
+    height: 14px;
+    border: 1px solid #000;
+    border-radius: 48%;
 }
+
+
 
 
 h1 {
