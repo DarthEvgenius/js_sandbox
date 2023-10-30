@@ -20,6 +20,8 @@
     border-radius: 10px;
 
     background-color: #fff;
+
+    /* overflow: hidden; */
 }
 
 .wave-btn__text {
