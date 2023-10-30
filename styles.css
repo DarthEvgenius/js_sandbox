@@ -54,19 +54,13 @@
 }
 
 .wave-btn__waves:before {
-    background-color: #d6caca;
-    width: 14px;
-    height: 14px;
-    border: 1px solid #000;
+    background-color: #fff;
     border-radius: 48%;
 }
 
 .wave-btn__waves:after {
-    background-color: #d85656;
-    width: 14px;
-    height: 14px;
-    border: 1px solid #000;
-    border-radius: 48%;
+    background-color: #fff;
+    border-radius: 44%;
 }
 
 
