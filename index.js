@@ -440,8 +440,9 @@ class ExtendedClock extends Clock {
 
 
 // Makes an unordered list out of object
-addFunctionName('createTree', 'makes an unordered list out of object (default object is given)')
-function createTree(container, object = {
+addFunctionName('createNodeTree', `makes an unordered list out of object (default object is given).
+Used iife and node appending.`)
+function createNodeTree(object = {
     "Рыбы": {
       "форель": {},
       "лосось": {}
@@ -458,14 +459,13 @@ function createTree(container, object = {
       }
     }
   }) {
-
-
-      container = document.createElement('div');
-      // Make an iife for DOM creating
+      let container = document.createElement('div');
+      // Make an iife for list creating
       container.append((function treeCreating(obj = object) {
         let keys = Object.keys(obj);
         // if there are no keys in object
-        if (!keys) return;
+        // corner case for the recursion
+        if (!keys.length) return;
         
         // create ul
         let ul = document.createElement('ul');
@@ -491,3 +491,53 @@ function createTree(container, object = {
       document.body.prepend(container);
       
 }
+
+
+
+addFunctionName('createTextTree', `makes an unordered list out of object (default object is given).
+Used iife and string concatenation`)
+function createTextTree(object = {
+    "Рыбы": {
+      "форель": {},
+      "лосось": {}
+    },
+  
+    "Деревья": {
+      "Огромные": {
+        "секвойя": {},
+        "дуб": {}
+      },
+      "Цветковые": {
+        "яблоня": {},
+        "магнолия": {}
+      }
+    }
+  }) {
+    let container = document.createElement('div');
+    // Make an iife for list creating
+    container.innerHTML = (function treeCreating(obj = object) {
+        // get object keys 
+        let keys = Object.keys(obj);
+        // check keys, corner case for recursion
+        if (!keys.length) return '';
+        // create new ul and li
+        let ul = ``;
+        let li = ``;
+        // go through all keys
+        for (let key of keys) {
+            // for each create new li string
+            // concat it with previous string
+            // call func to create inner list for key
+            li += `<li>${key}${treeCreating(obj[key])}</li>`
+            // with no keys in object li will be empty
+        }    
+        // if li-string not empty, add it to ul
+        if (li) {
+            ul = `<ul>${li}</ul>`;
+        }
+        // return ul or '' if ul will not be initialised
+        return ul;
+    })();
+
+    document.body.prepend(container);
+  }
