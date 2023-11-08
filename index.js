@@ -436,3 +436,58 @@ class ExtendedClock extends Clock {
         );
     }
 }
+
+
+
+// Makes an unordered list out of object
+addFunctionName('createTree', 'makes an unordered list out of object (default object is given)')
+function createTree(container, object = {
+    "Рыбы": {
+      "форель": {},
+      "лосось": {}
+    },
+  
+    "Деревья": {
+      "Огромные": {
+        "секвойя": {},
+        "дуб": {}
+      },
+      "Цветковые": {
+        "яблоня": {},
+        "магнолия": {}
+      }
+    }
+  }) {
+
+
+      container = document.createElement('div');
+      // Make an iife for DOM creating
+      container.append((function treeCreating(obj = object) {
+        let keys = Object.keys(obj);
+        // if there are no keys in object
+        if (!keys) return;
+        
+        // create ul
+        let ul = document.createElement('ul');
+        // create li for each key
+        for (let k of keys) {
+            let li = document.createElement('li');
+            // add text to those li
+            li.textContent = k;
+            // call treeCreating func for each key
+            // save child ul to new variable
+            let childUl = treeCreating(obj[k]);
+            // check if it's not empty (undefied)
+            if (childUl) {
+                // append to parent li
+                li.append(childUl);
+            }
+            // add li to ul
+            ul.append(li);
+        }
+        return ul;
+
+      })());
+      document.body.prepend(container);
+      
+}
