@@ -520,6 +520,7 @@ function createTextTree(object = {
         let keys = Object.keys(obj);
         // check keys, corner case for recursion
         if (!keys.length) return '';
+        
         // create new ul and li
         let ul = ``;
         let li = ``;
