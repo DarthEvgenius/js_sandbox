@@ -343,7 +343,7 @@ function spyDecorato(func) {
 // Showing this context for object's methods and arrow functions
 addFunctionName('thisObject', "Showing 'this' context for object's methods and arrow functions")
 let thisObject = {
-    method() {
+    method: function() {
         console.log(this); // thisObject
         let foo = () => console.log(this);
         foo(); // thisObject
@@ -354,17 +354,16 @@ let thisObject = {
 // now we will return arrow function in obj.method 
 // and then assign returned arrow from one obj to another
 let thisObject_2 = {
-    method() {
+    method2: function() {
         console.log(this); // thisObject_2
         let foo = () => console.log(this);
-
         return foo;
     }
 }
 let thisObject_3 = {
-    method_3: thisObject.method(), // thisObject_2 !
+    method_3: thisObject_2.method2(), // thisObject_2 !
 }
-// try thisObject_3()
+// try thisObject_3.method_3()
 
 // So the difference between classic function and arrows is in 'this':
 // For classic function 'this' is calculated when we call it
@@ -421,7 +420,7 @@ addFunctionName('ExtendedClock', `class has prototype of Clock, shows time on ea
 Usage:<br>
 - Create instanse of ExtendedClock with paramers: {template: 'h:m:s', interval: &lt;ms&gt;} (Or you can put just an empty object {}, then default params will be applied)<br>
     - Activate timer via .start()<br>
-        - Stop timer via .stop()`)
+        - Stop timer via .stop()`);
 
 class ExtendedClock extends Clock {
     constructor({ template = 'h:m:s', interval = 1000 }) {
@@ -441,7 +440,7 @@ class ExtendedClock extends Clock {
 
 // Makes an unordered list out of object
 addFunctionName('createNodeTree', `makes an unordered list out of object (default object is given).
-Used iife and node appending.`)
+Used iife and node appending.`);
 function createNodeTree(object = {
     "Рыбы": {
       "форель": {},
@@ -458,7 +457,8 @@ function createNodeTree(object = {
         "магнолия": {}
       }
     }
-  }) {
+  }) 
+  {
       let container = document.createElement('div');
       // Make an iife for list creating
       container.append((function treeCreating(obj = object) {
@@ -495,7 +495,8 @@ function createNodeTree(object = {
 
 
 addFunctionName('createTextTree', `makes an unordered list out of object (default object is given).
-Used iife and string concatenation`)
+Used iife and string concatenation`);
+
 function createTextTree(object = {
     "Рыбы": {
       "форель": {},
@@ -512,7 +513,8 @@ function createTextTree(object = {
         "магнолия": {}
       }
     }
-  }) {
+  }) 
+  {
     let container = document.createElement('div');
     // Make an iife for list creating
     container.innerHTML = (function treeCreating(obj = object) {
@@ -520,7 +522,7 @@ function createTextTree(object = {
         let keys = Object.keys(obj);
         // check keys, corner case for recursion
         if (!keys.length) return '';
-        
+
         // create new ul and li
         let ul = ``;
         let li = ``;
@@ -541,4 +543,117 @@ function createTextTree(object = {
     })();
 
     document.body.prepend(container);
-  }
+}
+
+
+
+addFunctionName(`createCalendar(year, month)`,
+   `creates a calendar of 'month' of a 'year' ontop of <body>.
+   Current month is given by default`);
+  
+function createCalendar(
+    year = new Date().getFullYear(),
+    month = new Date().getMonth() + 1) {
+
+    // create or find the container with id=calendar
+    let container = document.getElementById('calendar') || document.createElement('div');
+    container.id = 'calendar';
+    container.innerHTML = '';
+    
+    // create a table
+    let table = document.createElement('table');
+    // set table styles
+    table.style.border = '1px solid black';
+    table.style.borderCollapse = 'collapse';
+    table.style.background = 'lightgrey';
+    table.style.width = '50%';
+    table.style.margin = '0 auto';
+
+    // create thead row with days
+    const thead = table.insertRow();
+    // creates day names array
+    const dayNames = [
+        'Пн','Вт','Ср','Чт','Пт','Сб','Вс'
+    ];
+    // create th elements
+    for (let day = 0; day < 7; day++) {
+        const th = document.createElement('th');
+        th.textContent = dayNames[day];
+        // set borders and background white for th
+        th.style.border = '1px solid black';
+        th.style.background = 'white';
+        // add th to tr
+        thead.append(th);
+    }    
+
+    // get Date object of required year and month
+    let date = new Date(year, month - 1);
+
+    // add table head with the month name
+    let months = [
+        'Январь',
+        'Февраль',
+        'Март',
+        'Апрель',
+        'май',
+        'Июнь',
+        'Июль',
+        'Август',
+        'Сентябрь',
+        'Октябрь',
+        'Ноябрь',
+        'Декабрь',
+    ]
+    let monthName = table.createCaption();
+    monthName.textContent = months[date.getMonth()];
+    monthName.style.textAlign = 'center';
+    monthName.style.fontWeight = 'bold';
+
+    // get amount of days in the month
+    // the difference between next month and current
+    let nextMonth = new Date(year, month);
+    let amountOfDays = Math.round(nextMonth - date) / (1000*3600*24);
+    // get the first weekday of the month
+    // -1 as we have Monday to be the 1st day
+    let firstDay = date.getDay() - 1;
+    
+    // create loop for weeks
+    // with no current++ 
+    // but only while current < amount of days
+    // currentDate will be incremented in the inner loop
+    for (let currentDate = 0; currentDate < amountOfDays;) {
+        // create new <tr>
+        let tr = table.insertRow();
+        // create inner loop for days:
+        // currentDay < 7; currentDate++, currentDay++
+        for (let currentWeekDay = 0; currentWeekDay < 7; currentDate++, currentWeekDay++) {
+            // create td
+            let td = tr.insertCell();
+            // set styles for td
+            td.style.border = '1px solid black';
+
+            // if it's 1st week:
+            // empty td's till firstDay is not match currentWeekDay
+            // don't start the count of currentDate
+            if (currentWeekDay < firstDay && currentDate < 1) {
+                currentDate--;
+                continue;
+            }  
+
+            // last week: 
+            // empty td if currentDate > amountOfDays
+            if (currentDate > amountOfDays - 1) {
+                continue;
+            }
+
+            // add date to td, 
+            // where currentDate+1 is similar to the date of the day           
+            td.textContent = currentDate + 1;
+        }
+    }
+    
+    // put table into container
+    container.append(table);
+    // add container to the document
+    document.body.prepend(container);
+}
