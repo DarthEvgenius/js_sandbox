@@ -86,7 +86,31 @@
     }
 }
 
-
+/* Clock styles */
+.clock {
+    text-align: center;
+    font-size: 1.5rem;
+}
+.clock_timer__hours {
+    color: rgb(233, 164, 140);
+}
+.clock_timer__minutes {
+    color: rgb(184, 221, 151);
+}
+.clock_timer__seconds {
+    color: rgb(139, 139, 209);
+}
+.clock_btn {
+    padding: .2rem .5rem;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    text-transform: uppercase;
+    background-color: #e7f1fc;
+    border: none;
+    border-radius: 5px;
+}
+.clock_btn:hover {
+    background-color: #d8ebff;
+}
 
 
 h1 {

@@ -657,3 +657,56 @@ function createCalendar(
     // add container to the document
     document.body.prepend(container);
 }
+
+
+
+addFunctionName(`clockRunner`,
+   `start clock with current time. We can stop timer and run it again.`);
+
+// add event listener to START button
+const start = document.querySelector('.clock_btn__start');
+start.addEventListener('click', clockRunner);
+
+function clockRunner() {
+    // get all elements of clock
+    // STOP button 
+    const stop = document.querySelector('.clock_btn__stop');
+    // timer elements
+    const timerHours = document.querySelector('.clock_timer__hours');
+    const timerMinutes = document.querySelector('.clock_timer__minutes');
+    const timerSeconds = document.querySelector('.clock_timer__seconds');
+    
+    // declare scoped functions before setInterval
+    // shows current time
+    function showTime() {
+        // get current time
+        // add zero for double-digit time format 
+        let date = new Date();
+        let hoursNow = addZero(date.getHours());
+        let minutesNow = addZero(date.getMinutes());
+        let secondsNow = addZero(date.getSeconds());                  
+
+        // insert hh:mm:ss to DOM elements
+        timerHours.textContent = hoursNow;
+        timerMinutes.textContent = minutesNow;
+        timerSeconds.textContent = secondsNow;
+    }
+    // adds zero before single digits
+    function addZero() {
+        let result = [];
+        for (let d of arguments) {
+            if (d<10) d = '0' + d;
+            result.push(d);
+        }
+        return [...result];
+    }    
+    
+    // onClick START btn showTime and then set interval    
+    showTime();
+    let timerID = setInterval(showTime, 1000);
+
+    // when STOP btn: clearInterval
+    stop.addEventListener('click', () => {
+        clearInterval(timerID);
+    });
+}
