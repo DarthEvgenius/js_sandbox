@@ -738,13 +738,9 @@ class Range {
 
 
 addFunctionName(`class AsyncRange`,
-   `almost the same as Range, but uses async/await inside`);
+   `extended from Range, adds async method .showAsync()`);
 
-class AsyncRange {
-    constructor(from, to) {
-        this.from = from;
-        this.to = to;
-    }
+class AsyncRange extends Range {
 
     *[Symbol.asyncIterator]() {
         for (let i = this.from; i <= this.to; i++) {
@@ -752,7 +748,7 @@ class AsyncRange {
         }
     }
 
-    async showAll() {
+    async showAsync() {
         for await (let i of this) {
             console.log(i)
             await new Promise(resolve => setTimeout(resolve, 500));
