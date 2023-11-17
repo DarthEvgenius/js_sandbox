@@ -710,3 +710,27 @@ function clockRunner() {
         clearInterval(timerID);
     });
 }
+
+
+
+addFunctionName(`class Range`,
+   `class with generator inside. Set range in 'new Range (from, to)' instance and use .showAll method for demo in console.`);
+
+class Range {
+    constructor(from, to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    *[Symbol.iterator]() {
+        for (let i = this.from; i <= this.to; i++) {
+            yield i;
+        }
+    }
+
+    showAll() {
+        for (let i of this) {
+            console.log(i)
+        }
+    }
+}
