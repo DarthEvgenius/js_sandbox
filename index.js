@@ -734,3 +734,28 @@ class Range {
         }
     }
 }
+
+
+
+addFunctionName(`class AsyncRange`,
+   `almost the same as Range, but uses async/await inside`);
+
+class AsyncRange {
+    constructor(from, to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    *[Symbol.asyncIterator]() {
+        for (let i = this.from; i <= this.to; i++) {
+            yield i;
+        }
+    }
+
+    async showAll() {
+        for await (let i of this) {
+            console.log(i)
+            await new Promise(resolve => setTimeout(resolve, 500));
+        }
+    }
+}
