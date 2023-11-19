@@ -735,8 +735,6 @@ class Range {
     }
 }
 
-
-
 addFunctionName(`class AsyncRange`,
    `extended from Range, adds async method .showAsync()`);
 
@@ -755,3 +753,65 @@ class AsyncRange extends Range {
         }
     }
 }
+
+
+
+// football handler
+document.addEventListener('DOMContentLoaded', () => {
+    // get elements
+    const field = document.getElementById('field')
+    const ball = document.getElementById('ball');
+    // ball initial position - field center
+    ball.style.top = (field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';
+    ball.style.left = (field.clientWidth / 2 - ball.offsetWidth / 2) + 'px';
+    ball.style.visibility = 'visible';
+
+    // put listeners
+    field.addEventListener('click', (event)=>{
+        moveBall(event);
+    });
+
+    // puts the ball's center into click coords
+    function moveBall(event) {
+        // get field coords based on window
+        const fieldOuterCoords = field.getBoundingClientRect();
+        const fieldInnerCoords = {
+            left: fieldOuterCoords.left + field.clientLeft,
+            top: fieldOuterCoords.top + field.clientTop,
+        };
+
+        // get click coords (also on window)
+        const clickCoords = [event.clientX, event.clientY];
+
+        // calculate ball's coords
+        // consider field's coords and ball size
+        let ballCoords = [
+            clickCoords[0] - fieldInnerCoords.left - ball.offsetWidth / 2,
+            clickCoords[1] - fieldInnerCoords.top - ball.offsetHeight / 2,
+        ];
+
+        // check if the ball crosses boundaries
+        // consider that inner coords are greater then outer!
+        // left border
+        if (ballCoords[0] < 0) {
+            ballCoords[0] = 0;
+        }
+        // right border
+        if (ballCoords[0] > field.clientWidth - ball.offsetWidth) {
+            ballCoords[0] = field.clientWidth - ball.offsetWidth;
+        }
+        // top border
+        if (ballCoords[1] < 0) {
+            ballCoords[1] = 0;
+        }
+        // bottom border
+        if (ballCoords[1] > field.clientHeight - ball.offsetHeight) {
+            ballCoords[1] = field.clientHeight - ball.offsetHeight;
+        }
+        
+        // put the ball consider the ball's size
+        ball.style.left = ballCoords[0] + 'px';
+        ball.style.top = ballCoords[1] + 'px'
+        
+    }
+})
