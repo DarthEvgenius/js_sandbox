@@ -815,3 +815,19 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
 })
+
+
+
+// dropdown menu handler
+document.addEventListener('DOMContentLoaded', () => {
+    const button = document.querySelector('.dropdown_header');
+    const menu = document.querySelector('.dropdown');
+    button.addEventListener('click', ()=>{
+        menu.classList.toggle('dropdown__opened');
+    })
+    window.addEventListener('click', (e)=> {
+        if (!button.contains(e.target)) {
+            menu.classList.remove('dropdown__opened');
+        }
+    })
+})
