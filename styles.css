@@ -217,6 +217,7 @@ h1 {
     position: absolute;
     left: 25px;
     background-color: #e7f1fca2;
+    z-index: 2;
 }
 .dropdown__opened .dropdown_menu {
     display: block;
@@ -231,7 +232,6 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 0px 5px #6097fe;
     cursor: pointer;
-    z-index: 2;
 }
 .dropdown_item:hover {
     background-color:#d8ebff;
