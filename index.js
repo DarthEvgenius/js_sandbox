@@ -4,10 +4,23 @@ addFunctionName('addFunctionName(name, description)', 'adds the name of the func
 
 function addFunctionName(name, description) {
     let ul = document.getElementById('functions');
+    ul.classList.add('functionsList')
     let li = document.createElement('li');
+    li.classList.add('functionsList_item');
     li.innerHTML = `<strong>${name}</strong>: ${description}`;
     ul.appendChild(li);
 }
+
+
+
+// Functions main list config
+document.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelectorAll('.functionsList_item').forEach((elem)=>{
+        elem.addEventListener('click', ()=>{
+            elem.classList.toggle('functionsList_item__opened');
+        });
+    });
+});
 
 
 
