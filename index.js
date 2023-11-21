@@ -24,23 +24,27 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-// intersection example on page
+// intersection example on console
 addFunctionName('intersection', 'intersection example on DOM elements');
+
 // enable an observer
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        let inOut = ''
-        if (entry.isIntersecting) {
-            inOut = 'enters viewport'
-        } else {
-            inOut = 'exits viewport'
-        }
-        console.log(inOut, entry.target);
+function intersection() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            let inOut = ''
+            if (entry.isIntersecting) {
+                inOut = 'enters viewport'
+            } else {
+                inOut = 'exits viewport'
+            }
+            console.log(inOut, entry.target);
+        });
     });
-});
-// set an observer for each li element on page
-const li = document.querySelectorAll('li');
-li.forEach(e => observer.observe(e));
+    // set an observer for each li element on page
+    const li = document.querySelectorAll('li');
+    li.forEach(e => observer.observe(e));
+}
+
 
 
 
@@ -843,4 +847,54 @@ document.addEventListener('DOMContentLoaded', () => {
             menu.classList.remove('dropdown__opened');
         }
     })
+})
+
+
+
+// carousel handler
+document.addEventListener('DOMContentLoaded', () => {
+    const prev = document.querySelector('.carousel_arrow__prev');
+    const next = document.querySelector('.carousel_arrow__next');
+    const galleryItems = document.querySelectorAll('.carousel_img');
+    const galleryLength = galleryItems.length;
+    const gallery = document.querySelector('.gallery ul');
+
+    let position = 1; // 1st visible element now
+    let transitionCoords = 0; // coordinates now
+    let steps = 3 // how many gallery items to move
+
+    prev.addEventListener('click', moveBack);
+    next.addEventListener('click', moveForward);
+
+    // move gallery forward
+    // here we have to reduce translate property
+    function moveForward() {
+        const width = parseFloat(window.getComputedStyle(galleryItems[6]).width);
+        
+        for (let i = 0; i < steps; i++) {
+            if (position == galleryLength - 2) {
+                break;
+            }         
+            let move = transitionCoords - width;
+            gallery.style.transform = `translateX(${move}px)`;
+            position++;
+            transitionCoords = move;
+        }
+    }
+
+    // move gallery backward
+    // and here increase translate property
+    function moveBack() {
+        const width = parseFloat(window.getComputedStyle(galleryItems[0]).width);
+        
+        for (let i = 0; i < steps; i++) {
+            if (position == 1) {
+                break;
+            }
+            let move = transitionCoords + width;                        
+            gallery.style.transform = `translateX(${move}px)`;
+            position --;
+            transitionCoords = move;
+        }
+    }
 })
