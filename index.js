@@ -1,23 +1,40 @@
 "use strict";
 // Add a function name to <ul> in the main page---------------------------
-addFunctionName('addFunctionName(name, description)', 'adds the name of the function and its description to this page')
+addFunctionName('addFunctionName(name, description)', 'adds the name of the function and its description to this page');
 
 function addFunctionName(name, description) {
+    //  get the main list
     let ul = document.getElementById('functions');
-    ul.classList.add('functionsList')
+    // create new list item
     let li = document.createElement('li');
-    li.classList.add('functionsList_item');
-    li.innerHTML = `<strong>${name}</strong>: ${description}`;
+    li.classList.add('functionsList__item');
+    li.id = name.split('(')[0];
+
+    // populate with content
+    li.innerHTML = `<strong class='functionsList__item_name'>${name}</strong>: ${description}`;
+
     ul.appendChild(li);
+}
+
+
+addFunctionName('createButtonInvoke(sectionId, functionName)', 'adds invoke button to the function')
+function createButtonInvoke(sectionId, functionName) {
+    const section = document.querySelector(`#${sectionId}`);
+    let btn = document.createElement('button');
+    btn.classList.add('functionsList__invoke-button');
+    btn.textContent = sectionId;
+    btn.addEventListener('click', () => {functionName()});
+    section.append(btn);
 }
 
 
 
 // Functions main list config
 document.addEventListener('DOMContentLoaded', ()=>{
-    document.querySelectorAll('.functionsList_item').forEach((elem)=>{
-        elem.addEventListener('click', ()=>{
-            elem.classList.toggle('functionsList_item__opened');
+    document.querySelectorAll('.functionsList__item').forEach((elem)=>{
+        elem.addEventListener('click', (event)=>{
+            // opened/closed triangle to the left of func names
+            elem.classList.toggle('functionsList__item__opened');
         });
     });
 });
@@ -456,8 +473,13 @@ class ExtendedClock extends Clock {
 
 
 // Makes an unordered list out of object
+// In future make new Tree inside list item of DOM
 addFunctionName('createNodeTree', `makes an unordered list out of object (default object is given).
 Used iife and node appending.`);
+
+// add invoke button to 'createNodeTree' func
+createButtonInvoke('createNodeTree', createNodeTree);
+
 function createNodeTree(object = {
     "Рыбы": {
       "форель": {},
@@ -476,9 +498,12 @@ function createNodeTree(object = {
     }
   }) 
   {
-      let container = document.createElement('div');
-      // Make an iife for list creating
-      container.append((function treeCreating(obj = object) {
+        // create container with 'functionsList__example' class
+        let container = document.createElement('div');
+        container.classList.add('functionsList__example');
+        
+        // Make an iife for list creating
+        container.append((function treeCreating(obj = object) {
         let keys = Object.keys(obj);
         // if there are no keys in object
         // corner case for the recursion
@@ -486,6 +511,7 @@ function createNodeTree(object = {
         
         // create ul
         let ul = document.createElement('ul');
+        ul.classList.add('nodeTreeNature');
         // create li for each key
         for (let k of keys) {
             let li = document.createElement('li');
@@ -504,9 +530,39 @@ function createNodeTree(object = {
         }
         return ul;
 
-      })());
-      document.body.prepend(container);
-      
+        })());
+    
+        // add new list into DOM
+        const createNodeTreeItem = document.querySelector('#createNodeTree');
+        createNodeTreeItem.append(container);
+
+        // apply listCollapseFunction to new list
+        listCollapseFunction(createNodeTreeItem);
+}
+
+
+
+addFunctionName(`listCollapseFunction(list)`, `adds collapse functionality to list's items with nested lists.<br>You can see it in action on previous function 'createNodeTree'`);
+
+function listCollapseFunction(list) {
+    // puts all list items inside of <span> tags
+    let listItems = list.querySelectorAll('li')
+    for (let item of listItems) {
+      let span = document.createElement('span');
+      item.prepend(span); // insert new span into li
+      span.prepend(span.nextSibling); // move li's txt into span
+    }
+
+    // add listener to the root of the list
+    list.addEventListener('click', (e) => {
+        if (e.target.tagName == 'SPAN') { // 'SPAN' all caps!!!
+          // get nested ul
+          let nestedList = e.target.parentElement.querySelector('ul');
+          if (nestedList) {
+            nestedList.hidden = !nestedList.hidden;
+          }
+        }      
+      });
 }
 
 
