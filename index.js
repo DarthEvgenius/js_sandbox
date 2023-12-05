@@ -23,7 +23,10 @@ function createButtonInvoke(sectionId, functionName) {
     let btn = document.createElement('button');
     btn.classList.add('functionsList__invoke-button');
     btn.textContent = sectionId;
-    btn.addEventListener('click', () => {functionName()});
+    btn.addEventListener('click', function invokeFunc() {
+        functionName();
+        btn.removeEventListener('click', invokeFunc);
+    });
     section.append(btn);
 }
 
@@ -33,8 +36,12 @@ function createButtonInvoke(sectionId, functionName) {
 document.addEventListener('DOMContentLoaded', ()=>{
     document.querySelectorAll('.functionsList__item').forEach((elem)=>{
         elem.addEventListener('click', (event)=>{
-            // opened/closed triangle to the left of func names
-            elem.classList.toggle('functionsList__item__opened');
+            if (event.target.classList.contains('functionsList__item') ||
+                event.target.classList.contains('functionsList__invoke-button') ||
+                event.target.classList.contains('functionsList__item_name')) {
+                // opened/closed triangle to the left of func names
+                elem.classList.toggle('functionsList__item__opened');
+            }
         });
     });
 });
