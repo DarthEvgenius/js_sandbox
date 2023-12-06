@@ -961,3 +961,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 })
+
+
+
+// tooltips
+addFunctionName(`tooltips`,
+   `add data-tooltip="..." attribute to any element and it will be on page (look at Menu elem class="dropdown_title, or hover over 'tooltip' name).<br>Better to use on inline elements.<br>Class .tooltip in CSS styles.`);
+
+document.addEventListener('mouseover', (event)=>{
+    if (event.target.dataset.tooltip) {
+      // get data from target
+      const target = event.target;
+      const text = target.dataset.tooltip;
+
+      // create element
+      let tooltip = document.createElement('div');
+      tooltip.classList.add('tooltip');
+      tooltip.innerHTML = text;
+      target.prepend(tooltip);
+
+      // set coordinates
+      const btnCoords = target.getBoundingClientRect();
+      
+      let top = btnCoords.y - tooltip.offsetHeight - 5;
+      // tooltip is on the middle of target
+      let left = btnCoords.x + (target.offsetWidth - tooltip.offsetWidth) / 2;
+
+      // if we're out of screen
+      if (top < 0) {
+        top = btnCoords.y + target.offsetHeight + 5;
+      }
+      if (left < 0) {
+        left = 0;
+      }
+
+      tooltip.style.top = top + 'px';
+      tooltip.style.left = left + 'px';
+
+
+      document.addEventListener('mouseout', (event)=>{
+        if (event.target.dataset.tooltip) {
+          tooltip.remove();
+        }
+      })
+
+    }
+  })
+
+// tooltip example
+const tooltipExample = document.querySelector('#tooltips');
+tooltipExample.firstElementChild.dataset.tooltip = 'Here is a tooltip';
