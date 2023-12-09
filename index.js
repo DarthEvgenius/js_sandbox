@@ -794,7 +794,7 @@ function clockRunner() {
 
 
 addFunctionName(`class Range`,
-   `class with generator inside. Set range in 'new Range (from, to)' instance and use .showAll method for demo in console.`);
+   `class with generator inside, itarable object to create. Set range in 'new Range (from, to)' instance and use .showAll method for demo in console.`);
 
 class Range {
     constructor(from, to) {
@@ -1011,3 +1011,71 @@ document.addEventListener('mouseover', (event)=>{
 // tooltip example
 const tooltipExample = document.querySelector('#tooltips');
 tooltipExample.firstElementChild.dataset.tooltip = 'Here is a tooltip';
+
+
+
+// sorting tables function
+addFunctionName(`tableSort()`,
+   `takes a table from page (or creates a new small one) and adds sorting functionality to it by clicking on tHead elements`);
+
+function tableSort() {
+    let table = document.querySelector('table');
+    if (table) {
+      table.tHead.onclick = function(e) {
+        let target = e.target;
+        let rowIndex = target.cellIndex;
+        let rows = Array.from(table.tBodies[0].rows);
+        
+        rows.sort(function(a, b) {
+          let aCell = a.cells[rowIndex].textContent;
+          aCell = +aCell || aCell;
+          let bCell = b.cells[rowIndex].textContent;
+          bCell = +bCell || bCell;
+          if (aCell > bCell) return 1
+          else return -1;
+        });
+        table.tBodies[0].append(...rows)
+      }
+    } else {
+        console.log('No table found on page');
+        let newTable = document.createElement('table');
+        newTable.innerHTML = `
+            <thead>
+                <tr>
+                    <th>Возраст</th>
+                    <th>Имя</th>
+                    <th>Пол</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>Вася</td>
+                    <td>М</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Петя</td>
+                    <td>М</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Женя</td>
+                    <td>Ж</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Маша</td>
+                    <td>Ж</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Илья</td>
+                    <td>М</td>
+                </tr>
+            </tbody>`;
+
+        document.querySelector('#tableSort').append(newTable);
+        tableSort();
+    }
+}
